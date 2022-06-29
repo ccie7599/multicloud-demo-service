@@ -259,30 +259,16 @@
         "id": "d554eade73674c15",
         "type": "http in",
         "z": "a3fd93de4e7ae70e",
-        "name": "Location Service endpoint /location",
-        "url": "/location",
-        "method": "get",
-        "upload": false,
+        "name": "consumable notification endpoint",
+        "url": "/outofpaper",
+        "method": "post",
+        "upload": true,
         "swaggerDoc": "",
-        "x": 260,
+        "x": 250,
         "y": 80,
         "wires": [
             [
                 "cd6d3646f1351786"
-            ]
-        ]
-    },
-    {
-        "id": "fc28f4f1929d20d5",
-        "type": "mgrs",
-        "z": "a3fd93de4e7ae70e",
-        "name": "Convert Lat/Lon to MGRS",
-        "precision": "5",
-        "x": 250,
-        "y": 160,
-        "wires": [
-            [
-                "d688cda22de864cd"
             ]
         ]
     },
@@ -516,7 +502,7 @@
         "y": 120,
         "wires": [
             [
-                "fc28f4f1929d20d5"
+                "d688cda22de864cd"
             ]
         ]
     },
@@ -543,7 +529,6 @@
         "id": "919db54feb9aeddd",
         "type": "inject",
         "z": "b9c85903b08ef4d9",
-        "d": true,
         "name": "Request every second",
         "props": [
             {
@@ -566,8 +551,7 @@
             [
                 "cf01461ece5d10ff",
                 "b5e0da01c5d96e47",
-                "3207256a5e6a43a3",
-                "26fcf91ee08b54f6"
+                "3207256a5e6a43a3"
             ]
         ]
     },
@@ -576,10 +560,10 @@
         "type": "http request",
         "z": "b9c85903b08ef4d9",
         "name": "Performance GTM Endpoint",
-        "method": "GET",
+        "method": "POST",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://performance.apleytest.terraform.akadns.net:1880/location?lat=45&lon=-85",
+        "url": "http://performance.apleytest.terraform.akadns.net:1880/outofpaper",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -598,10 +582,10 @@
         "type": "http request",
         "z": "b9c85903b08ef4d9",
         "name": "Load Balanced GTM endpoint",
-        "method": "GET",
+        "method": "POST",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://loadbalance.apleytest.terraform.akadns.net:1880/location?lat=45&lon=-85",
+        "url": "http://loadbalance.apleytest.terraform.akadns.net:1880/outofpaper",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -620,10 +604,10 @@
         "type": "http request",
         "z": "b9c85903b08ef4d9",
         "name": "Failover GTM Endpoint",
-        "method": "GET",
+        "method": "POST",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://failover.apleytest.terraform.akadns.net:1880/location?lat=45&lon=-85",
+        "url": "http://failover.apleytest.terraform.akadns.net:1880/outofpaper",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -631,28 +615,6 @@
         "senderr": false,
         "x": 410,
         "y": 220,
-        "wires": [
-            [
-                "300ba90ddc44f684"
-            ]
-        ]
-    },
-    {
-        "id": "26fcf91ee08b54f6",
-        "type": "http request",
-        "z": "b9c85903b08ef4d9",
-        "name": "Geo-Map GTM Endpoint",
-        "method": "GET",
-        "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "http://geomap.apleytest.terraform.akadns.net:1880/location?lat=45&lon=-85",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "senderr": false,
-        "x": 410,
-        "y": 280,
         "wires": [
             [
                 "300ba90ddc44f684"
